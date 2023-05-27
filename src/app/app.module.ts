@@ -10,16 +10,22 @@ import { HomeComponent } from './core/home/home.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatIconModule,
+    MatSelectModule,
+    MatButtonModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

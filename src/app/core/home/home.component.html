@@ -9,9 +9,48 @@
           <mat-card-title>Using Dijkstra</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>Dijkstra Search</p>
+          <div class="flex justify-evenly">
+            <div class="flex">
+              <div class="flex mr-2 align-middle items-center">
+                <mat-icon class="icon-size">movie</mat-icon>
+              </div>
+              <h2 class="flex items-center">First Serie/Movie</h2>
+              <mat-form-field class="ml-4" appearance="outline">
+                <mat-select [(value)]="first_film">
+                  <mat-option *ngFor="let film of data" [value]="film">
+                    {{ film }}
+                  </mat-option>
+                </mat-select>
+                <mat-hint align="end">Select a movie/serie</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="flex">
+              <div class="flex mr-2 align-middle items-center">
+                <mat-icon class="icon-size">movie</mat-icon>
+              </div>
+              <h2 class="flex items-center">Second Serie/Movie</h2>
+              <mat-form-field class="ml-4" appearance="outline">
+                <mat-select [(value)]="second_film">
+                  <mat-option *ngFor="let film of data" [value]="film">
+                    {{ film }}
+                  </mat-option>
+                </mat-select>
+                <mat-hint align="end">Select a movie/serie</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <button mat-raised-button color="primary">
+              Search with Dijkstra
+            </button>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-card-content>
   </mat-card>
 </div>
+
+<!-- <pre> -->
+<!--   {{ first_film | json }} -->
+<!--   {{ second_film | json }} -->
+<!-- </pre> -->
