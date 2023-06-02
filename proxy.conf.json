@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://complex-final-lla.azurewebsites.net/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

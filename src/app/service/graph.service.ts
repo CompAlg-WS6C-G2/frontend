@@ -7,13 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class GraphService {
   constructor(private http: HttpClient) {}
 
-  url: string = 'http://localhost:5000';
-
   getNodes() {
-    return this.http.get(`${this.url}/nodes`);
+    return this.http.get('/api/nodes');
   }
 
   getLinks() {
-    return this.http.get(`${this.url}/links`);
+    return this.http.get('/api/links');
   }
 }
