@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 // Views
 import { HomeComponent } from './core/home/home.component';
 import { ChartComponent } from './core/chart/chart.component';
+import { NotFoundComponent } from './helper/not-found/not-found.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ChartComponent],
+  declarations: [AppComponent, HomeComponent, ChartComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
