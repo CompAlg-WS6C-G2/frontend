@@ -16,7 +16,7 @@
               </div>
               <h2 class="flex items-center">First Serie/Movie</h2>
               <mat-form-field class="ml-4" appearance="outline">
-                <mat-select [(value)]="first_film">
+                <mat-select  [(value)]="first_film">
                   <mat-option *ngFor="let film of data" [value]="film">
                     {{ film }}
                   </mat-option>
@@ -31,7 +31,7 @@
               <h2 class="flex items-center">Second Serie/Movie</h2>
               <mat-form-field class="ml-4" appearance="outline">
                 <mat-select [(value)]="second_film">
-                  <mat-option *ngFor="let film of data" [value]="film">
+                  <mat-option *ngFor="let film of data2" [value]="film">
                     {{ film }}
                   </mat-option>
                 </mat-select>
