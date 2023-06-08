@@ -28,6 +28,6 @@ export class GraphService {
   }
 
   getFilm(film: string) {
-    return this.http.get(`/api/mongodb_nodes/${encodeURIComponent(film)}`);
+    return this.http.get(this.baseUrl + `mongodb_nodes/${encodeURIComponent(film)}`);
   }
 }
