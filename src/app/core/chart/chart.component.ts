@@ -22,6 +22,8 @@ export class ChartComponent implements OnInit {
   }
 
   loadData() {
+    console.log('Loading graph');
+
     for (let i = 0; i < this.films.length; i++) {
       this.nodes.push({ id: this.films[i], label: this.films[i] });
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GraphService } from 'src/app/service/graph.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, ReplaySubject } from 'rxjs';
+import { active } from 'd3';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   dijkstra_films: Film[] = [];
   dataSource = new FilmDataSource(this.dijkstra_films);
   displayedColumns: string[] = ['title', 'series_or_movie', 'score'];
+  activateGraph: boolean = false;
 
   constructor(private graphService: GraphService) {}
 
@@ -30,6 +32,8 @@ export class HomeComponent implements OnInit {
   }
 
   dijkstraAlgorithm(first: string, second: string) {
+    this.activateGraph = false;
+
     if (this.first_film === this.second_film) {
       alert('Please select two different films.');
       return;
@@ -78,6 +82,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadGraph() {
+    this.activateGraph = true;
     if (this.dijkstra_results.length === 0) {
       alert('Please select two films first.');
       return;
