@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent {
   data: Array<any> = [];
   data2:Array<any> =[];
   selectedFilm:any;
+  result: Array<any> = [];
 
 
 
@@ -54,5 +56,17 @@ export class HomeComponent {
       }
     }
     this.first_film = this.first_film;
+  }
+  getResult(first: string, second: string):Observable<any>{
+    return this.http.get(
+      `${this.basePath}dijkstra/${first}/${second}`,
+    this.httpOptions
+    );
+  }
+  gotoResult(first: string, second: string){
+    this.getResult(first, second).subscribe((data: any) => {
+      this.result = data.path;
+      console.log(data)
+    });
   }
 }

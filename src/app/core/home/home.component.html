@@ -40,10 +40,20 @@
             </div>
           </div>
           <div class="flex justify-center">
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)="gotoResult(first_film,second_film)">
               Search with Dijkstra
             </button>
           </div>
+          <div *ngIf="result.length < 1" class="position">
+            <span class="style estructur">No Results</span>
+          </div>
+          <div class="position">
+            <div class="estructur" *ngFor="let result of result">
+              <span class="style">{{ result }}</span>
+              
+            </div>
+          </div>
+          
         </mat-card-content>
       </mat-card>
     </mat-card-content>
