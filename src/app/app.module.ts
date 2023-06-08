@@ -16,22 +16,31 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // NgxGraph
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ChartComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ChartComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatCardModule,
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
     NgxGraphModule,
-    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

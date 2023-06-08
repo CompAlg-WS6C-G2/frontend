@@ -1,4 +1,4 @@
-<div class="m-4">
+<div class="m-6">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Netflix Recomendations</mat-card-title>
@@ -16,7 +16,7 @@
               </div>
               <h2 class="flex items-center">First Serie/Movie</h2>
               <mat-form-field class="ml-4" appearance="outline">
-                <mat-select  [(value)]="first_film">
+                <mat-select [(value)]="first_film">
                   <mat-option *ngFor="let film of data" [value]="film">
                     {{ film }}
                   </mat-option>
@@ -31,7 +31,7 @@
               <h2 class="flex items-center">Second Serie/Movie</h2>
               <mat-form-field class="ml-4" appearance="outline">
                 <mat-select [(value)]="second_film">
-                  <mat-option *ngFor="let film of data2" [value]="film">
+                  <mat-option *ngFor="let film of data" [value]="film">
                     {{ film }}
                   </mat-option>
                 </mat-select>
@@ -39,28 +39,78 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="flex justify-center">
-            <button mat-raised-button color="primary" (click)="gotoResult(first_film,second_film)">
+          <div class="flex flex-col justify-center">
+            <button
+              class="mx-96 my-5"
+              mat-raised-button
+              color="primary"
+              (click)="dijkstraAlgorithm(first_film, second_film)"
+            >
               Search with Dijkstra
             </button>
+            <button
+              class="mx-96"
+              mat-raised-button
+              color="primary"
+              (click)="loadGraph()"
+            >
+              Load Graph
+            </button>
           </div>
-          <div *ngIf="result.length < 1" class="position">
-            <span class="style estructur">No Results</span>
-          </div>
-          <div class="position">
-            <div class="estructur" *ngFor="let result of result">
-              <span class="style">{{ result }}</span>
-              
-            </div>
-          </div>
-          
         </mat-card-content>
       </mat-card>
     </mat-card-content>
   </mat-card>
 </div>
 
-<!-- <pre> -->
-<!--   {{ first_film | json }} -->
-<!--   {{ second_film | json }} -->
-<!-- </pre> -->
+<div class="m-6">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Recomendations with Dijkstra</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <table mat-table [dataSource]="dataSource">
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <!-- Series Or Movie Column -->
+          <ng-container matColumnDef="series_or_movie">
+            <th mat-header-cell *matHeaderCellDef>Series Or Movie</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.series_or_movie }}
+            </td>
+          </ng-container>
+          <!-- Score Column -->
+          <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef>IMDb Score</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.score }}
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="m-6">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Dijkstra Graph</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-chart [films]="dijkstra_results"></app-chart>
+    </mat-card-content>
+  </mat-card>
+</div>

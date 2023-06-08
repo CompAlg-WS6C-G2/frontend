@@ -1,5 +1,5 @@
 import { GraphService } from './../../service/graph.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Edge, Node } from '@swimlane/ngx-graph/public_api';
 
 @Component({
@@ -8,8 +8,10 @@ import { Edge, Node } from '@swimlane/ngx-graph/public_api';
   styleUrls: ['./chart.component.css'],
 })
 export class ChartComponent implements OnInit {
-  links: any;
-  nodes: any;
+  @Input() films: any = [];
+
+  links: any = [];
+  nodes: any = [];
   mynodes: Node[] = [];
   mylinks: Edge[] = [];
 
@@ -20,23 +22,27 @@ export class ChartComponent implements OnInit {
   }
 
   loadData() {
-    this.graphService.getNodes().subscribe((data) => {
-      this.nodes = data;
-      for (let i = 0; i < this.nodes.length; i++) {
-        this.nodes[i].label = this.nodes[i].id.toString();
-      }
-      this.mynodes = this.nodes;
-      console.log(this.mynodes);
-    });
+    for (let i = 0; i < this.films.length; i++) {
+      this.nodes.push({ id: this.films[i], label: this.films[i] });
+    }
+
+    this.mynodes = this.nodes;
 
     this.graphService.getLinks().subscribe((data) => {
-      this.links = data;
-      for (let i = 0; i < this.links.length; i++) {
-        // remove weight from links
-        delete this.links[i].weight;
+      var temp_links: any = data;
+      for (let i = 0; i < temp_links.length; i++) {
+        if (
+          this.films.includes(temp_links[i].source) &&
+          this.films.includes(temp_links[i].target)
+        ) {
+          this.links.push({
+            source: temp_links[i].source,
+            target: temp_links[i].target,
+          });
+        }
       }
       this.mylinks = this.links;
-      console.log(this.mylinks);
+      console.log(this.links);
     });
   }
 }
