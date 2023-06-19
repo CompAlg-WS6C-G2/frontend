@@ -13,21 +13,26 @@ export class GraphService {
     return this.http.get(this.baseUrl);
   }
 
-  getNodes() {
-    return this.http.get(this.baseUrl + 'nodes');
- }
-
   getLinks() {
     return this.http.get(this.baseUrl + 'links');
   }
 
-  dijkstra(start: string, end: string) {
+  dijkstra(
+    start: string,
+    end: string,
+    typefilm = 'both',
+    runtime = 4,
+    score = 0
+  ) {
     return this.http.get(
-      this.baseUrl + `dijkstra/${encodeURIComponent(start)}/${encodeURIComponent(end)}`
+      this.baseUrl +
+        `dijkstra/${encodeURIComponent(start)}/${encodeURIComponent(
+          end
+        )}/${typefilm}/${runtime}/${score}`
     );
   }
 
   getFilm(film: string) {
-    return this.http.get(this.baseUrl + `mongodb_nodes/${encodeURIComponent(film)}`);
+    return this.http.get(this.baseUrl + `data/${encodeURIComponent(film)}`);
   }
 }

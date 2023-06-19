@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { GraphService } from 'src/app/service/graph.service';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, ReplaySubject } from 'rxjs';
-import { active } from 'd3';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -10,31 +16,71 @@ import { active } from 'd3';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  first_film: string = '';
-  second_film: string = '';
-  data: Array<any> = [];
+  data: string[] = [];
   selectedFilm: any;
   dijkstra_results = [];
   dijkstra_films: Film[] = [];
   dataSource = new FilmDataSource(this.dijkstra_films);
   displayedColumns: string[] = ['title', 'series_or_movie', 'score'];
   activateGraph: boolean = false;
+  filmControl: FormGroup;
+  filteredOptionsFirstFilm: Observable<string[]> | undefined;
+  filteredOptionsSecondFilm: Observable<string[]> | undefined;
 
-  constructor(private graphService: GraphService) {}
-
-  ngOnInit() {
-    this.graphService.getData().subscribe((data: any) => {
-      this.data = data;
-      this.first_film = this.data[0];
-      this.second_film = this.data[1];
+  constructor(
+    private graphService: GraphService,
+    private formBuilder: FormBuilder
+  ) {
+    this.filmControl = this.formBuilder.group({
+      first_film: new FormControl(
+        { validators: [Validators.required] },
+        { updateOn: 'change' }
+      ),
+      second_film: new FormControl(
+        { validators: [Validators.required] },
+        { updateOn: 'change' }
+      ),
     });
-    console.log(this.data);
   }
 
-  dijkstraAlgorithm(first: string, second: string) {
-    this.activateGraph = false;
+  ngOnInit() {
+    this.graphService
+      .getData()
+      .subscribe((data: any) => {
+        this.data = data;
+        this.filmControl.get('first_film')?.setValue(data[0]);
+        this.filmControl.get('second_film')?.setValue(data[1]);
+      })
+      .add(() => {
+        this.filteredOptionsFirstFilm = this.filmControl
+          ?.get('first_film')
+          ?.valueChanges.pipe(
+            startWith(''),
+            map((value) => this._filter(value || ''))
+          );
+        this.filteredOptionsSecondFilm = this.filmControl
+          ?.get('second_film')
+          ?.valueChanges.pipe(
+            startWith(''),
+            map((value) => this._filter(value || ''))
+          );
+      });
+  }
 
-    if (this.first_film === this.second_film) {
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.data.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  dijkstraAlgorithm() {
+    this.activateGraph = false;
+    var first = this.filmControl.get('first_film')?.value;
+    var second = this.filmControl.get('second_film')?.value;
+
+    if (first === second) {
       alert('Please select two different films.');
       return;
     }
