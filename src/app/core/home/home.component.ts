@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { GraphService } from 'src/app/service/graph.service';
 import { DataSource } from '@angular/cdk/collections';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   dijkstra_results = [];
   dijkstra_films: Film[] = [];
   dataSource = new FilmDataSource(this.dijkstra_films);
-  displayedColumns: string[] = ['title', 'series_or_movie', 'score'];
+  displayedColumns: string[] = ['title', 'series_or_movie', 'score', 'actions'];
   activateGraph: boolean = false;
   filmControl: FormGroup;
   filteredOptionsFirstFilm: Observable<string[]> | undefined;
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private graphService: GraphService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder, private dialog: MatDialog
   ) {
     this.filmControl = this.formBuilder.group({
       first_film: new FormControl(
@@ -133,6 +134,13 @@ export class HomeComponent implements OnInit {
       alert('Please select two films first.');
       return;
     }
+  }
+  openDialog(element: any) {
+    const dialogRef = this.dialog.open(element); //acá está mal
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
 
