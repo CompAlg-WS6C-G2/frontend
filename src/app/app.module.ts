@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './core/home/home.component';
 import { ChartComponent } from './core/chart/chart.component';
 import { NotFoundComponent } from './helper/not-found/not-found.component';
+import { DialogFilmInformationComponent } from './core/dialog-film-information/dialog-film-information.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -26,7 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 // NgxGraph
 import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { DialogFilmInformationComponent } from './core/dialog-film-information/dialog-film-information.component';
 
 @NgModule({
   declarations: [
