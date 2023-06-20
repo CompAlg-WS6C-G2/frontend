@@ -7,9 +7,11 @@ import {
 } from '@angular/forms';
 import { GraphService } from 'src/app/service/graph.service';
 import { DataSource } from '@angular/cdk/collections';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFilmInformationComponent } from '../dialog-film-information/dialog-film-information.component';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Film } from 'src/app/helper/Film';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +32,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private graphService: GraphService,
-    private formBuilder: FormBuilder, private dialog: MatDialog
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) {
     this.filmControl = this.formBuilder.group({
       first_film: new FormControl(
@@ -135,10 +138,13 @@ export class HomeComponent implements OnInit {
       return;
     }
   }
-  openDialog(element: any) {
-    const dialogRef = this.dialog.open(element); //acá está mal
+  openDialog(element: Film) {
+    const dialogRef = this.dialog.open(DialogFilmInformationComponent, {
+      data: element,
+      width: '60%',
+    });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -161,15 +167,4 @@ class FilmDataSource extends DataSource<Film> {
   setData(data: Film[]) {
     this._dataStream.next(data);
   }
-}
-
-export interface Film {
-  title: string;
-  genre: string[];
-  languages: string[];
-  series_or_movie: string;
-  netflix_link: string;
-  summary: string;
-  poster: string;
-  score: number;
 }

@@ -22,9 +22,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // NgxGraph
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { DialogFilmInformationComponent } from './core/dialog-film-information/dialog-film-information.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
     HomeComponent,
     ChartComponent,
     NotFoundComponent,
+    DialogFilmInformationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
