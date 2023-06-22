@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
   openDialog(element: Film) {
     const dialogRef = this.dialog.open(DialogFilmInformationComponent, {
       data: element,
-      width: '60%',
+      width: '35%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
