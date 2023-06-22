@@ -10,7 +10,8 @@
   justify-content: space-between; /* Ajusta el espacio entre los elementos */
 }
 
-.column p, h1 {
+.column p,
+h1 {
   color: #282222;
 }
 

@@ -7,12 +7,3 @@
 h2 {
   margin: 0;
 }
-
-.estructur{
-  display: inline-block;
-  min-width: 50px;
-  margin: 20px;
-}
-button .w-64{
-  background-color: #f11728;
-}
