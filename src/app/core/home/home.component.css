@@ -13,3 +13,6 @@ h2 {
   min-width: 50px;
   margin: 20px;
 }
+button .w-64{
+  background-color: #f11728;
+}

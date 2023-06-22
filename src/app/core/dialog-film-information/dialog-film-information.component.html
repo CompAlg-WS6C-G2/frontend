@@ -4,11 +4,13 @@
   </div>
   <div class="column">
     <h1>{{ data.title }}</h1>
-    <p>Genre : {{data.genre}} </p>
-    <p>Tipe of film : {{data.series_or_movie}}</p>
+    <p>Genre: {{data.genre}}</p>
+    <p>Type of film: {{data.series_or_movie}}</p>
     <p>Available languages: {{data.languages}}</p>
-    <p>Score : {{data.score}}</p>
-    <p>Summary : {{data.summary}}</p>
-    <a [href]="data.netflix_link">Watch in Netflix</a>
+    <p>Score: {{data.score}}</p>
+    <p>Summary: {{data.summary}}</p>
+    <div class="button-container">
+      <a [href]="data.netflix_link" class="button-link">Watch on Netflix</a>
+    </div>
   </div>
 </div>

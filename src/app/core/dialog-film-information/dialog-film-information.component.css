@@ -1,12 +1,30 @@
 .container {
-    display: flex;
-  }
-  
-  .column {
-    flex: 1;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra horizontalmente los elementos */
-    align-items: center; /* Centra verticalmente los elementos */
-  }
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ajusta el espacio entre los elementos */
+}
+
+.column p, h1 {
+  color: #282222;
+}
+
+.button-container {
+  margin-top: auto; /* Empuja el contenido hacia la parte inferior */
+}
+
+.button-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #d81438;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
