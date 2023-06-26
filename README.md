@@ -1,27 +1,28 @@
-# Frontend
+# Guía Instalación y uso Backend - Netflix Recomendations
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+## 1. Descompimir el zip 
 
-## Development server
+## 2. Acceder a la carpeta *frontend-main*
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 3. Abrir una terminal en la ruta de la carpeta
 
-## Code scaffolding
+## 4. Instalación de dependencias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecuta el comando:
 
-## Build
+```
+npm install --force
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Esto evitará que se muestren conflictos por las dependencias.
 
-## Running unit tests
+## 5. Corre el programa
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecuta el comando:
 
-## Running end-to-end tests
+```
+ng serve -o
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Este comando abrirá la aplicación web directamente en su navegador predeterminado, pero en caso no sea así puede acceder mediante la siguiente url:
+http://localhost:4200/
